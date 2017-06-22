@@ -9,25 +9,22 @@ mongoose.connect('mongodb://localhost/todolist101')
 
 const Todo = require('./schema/todo.schema')
 
-
-app.get('/showTodoLists', (req ,res) => {
-    Todo.find({}).then((todos) => {
-        res.send(todos)
-    })
+app.get('/showTodoLists', (req , res) => {
+  Todo.find({}).then((todos) => {
+    res.send(todos)
+  })
 })
 
 app.post('/addTodo', (req, res) => {
-    console.log(req.body)
-    let obj = new Todo(req.body)
-    obj.save((err, obj) => {
-        if (err) {
-            res.send(err)
-        } else {
-            res.send(obj)
-        }
-    })
+  console.log(req.body)
+  let obj = new Todo(req.body)
+  obj.save((err, obj) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.send(obj)
+    }
+  })
 })
 
 app.listen(3000)
-
-
